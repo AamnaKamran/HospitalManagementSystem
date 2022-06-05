@@ -1,33 +1,28 @@
 package Controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import Entities.HmsUser;
 import Main.Main;
 import Utilities.SignedInUser;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class ViewPatientProfile implements Initializable {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ViewProfile implements Initializable {
 
     @FXML
-    private ImageView BookBtn;
+    private ImageView editProfileBtn;
 
     @FXML
-    private ImageView LogOut;
+    private Label doctors_name;
 
     @FXML
-    private ImageView editButton;
-
-    @FXML
-    private Label email_address;
-
-    @FXML
-    private ImageView findDocBtn;
+    private Label emailAddress;
 
     @FXML
     private Label fname;
@@ -36,42 +31,27 @@ public class ViewPatientProfile implements Initializable {
     private Label lname;
 
     @FXML
-    private ImageView historyBtn;
-
-    @FXML
     private Label password;
-
-    @FXML
-    private Label patients_name;
-
-    @FXML
-    private ImageView profileBtn;
-
-    @FXML
-    private Label signedInUserLabel;
 
     @FXML
     private Label username;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SignedInUser signedInUser = SignedInUser.getInstance();
-        patients_name.setText(signedInUser.getUser().getFirstName() + " "+signedInUser.getUser().getLastName());
-        patients_name.setVisible(true);
-        username.setText(signedInUser.getUser().getId());
-        username.setVisible(true);
-        email_address.setText(signedInUser.getUser().getEmailAddress());
-        email_address.setVisible(true);
+        doctors_name.setText(signedInUser.getUser().getFirstName()+" "+signedInUser.getUser().getLastName());
         fname.setText(signedInUser.getUser().getFirstName());
         fname.setVisible(true);
         lname.setText(signedInUser.getUser().getLastName());
         lname.setVisible(true);
+        username.setText(signedInUser.getUser().getId());
+        username.setVisible(true);
+        emailAddress.setText(signedInUser.getUser().getEmailAddress());
+        emailAddress.setVisible(true);
         password.setText(signedInUser.getUser().getPassword());
         password.setVisible(true);
-
     }
 
-    @FXML
-    void BackToLogin(MouseEvent event) {
+    public void BackToLogin(MouseEvent mouseEvent) {
         Main main = new Main();
         try {
             main.changeScene("ScreenFXMLs/LoginScreen.fxml");
@@ -81,24 +61,42 @@ public class ViewPatientProfile implements Initializable {
         }
     }
 
-    @FXML
-    void Booking(MouseEvent event) {
-
+    public void BackToDashboard(MouseEvent mouseEvent) {
         Main main = new Main();
         try {
-            main.changeScene("ScreenFXMLs/Patient/BookAppointment.fxml");
+            main.changeScene("ScreenFXMLs/Doctor/DashboardDoctor.fxml");
         }
         catch(Exception e) {
             System.out.println("Page not Loaded");
         }
+    }
 
+    @FXML
+    void ViewPatients(MouseEvent event) {
+        Main main = new Main();
+        try {
+            main.changeScene("ScreenFXMLs/Doctor/ViewPatients.fxml");
+        }
+        catch(Exception e) {
+            System.out.println("Page not Loaded");
+        }
     }
 
     @FXML
     void ViewProfile(MouseEvent event) {
         Main main = new Main();
         try {
-            main.changeScene("ScreenFXMLs/Patient/ViewProfile.fxml");
+            main.changeScene("ScreenFXMLs/ViewProfile.fxml");
+        }
+        catch(Exception e) {
+            System.out.println("Page not Loaded");
+        }
+    }
+
+    public void ViewAppointments(MouseEvent mouseEvent) {
+        Main main = new Main();
+        try {
+            main.changeScene("ScreenFXMLs/Doctor/ViewAppointments.fxml");
         }
         catch(Exception e) {
             System.out.println("Page not Loaded");
@@ -106,40 +104,13 @@ public class ViewPatientProfile implements Initializable {
     }
 
     @FXML
-    void editButtonClicked(MouseEvent event) {
+    public void editProfile(MouseEvent mouseEvent) {
         Main main = new Main();
         try {
-            main.changeScene("ScreenFXMLs/Patient/EditProfile.fxml");
+            main.changeScene("ScreenFXMLs/Doctor/EditProfile.fxml");
         }
         catch(Exception e) {
             System.out.println("Page not Loaded");
         }
     }
-
-    @FXML
-    void findDoctor(MouseEvent event) {
-
-        Main main = new Main();
-        try {
-            main.changeScene("ScreenFXMLs/Patient/FindDoctor.fxml");
-        }
-        catch(Exception e) {
-            System.out.println("Page not Loaded");
-        }
-
-    }
-
-    @FXML
-    void viewVisitingHistory(MouseEvent event) {
-
-        Main main = new Main();
-        try {
-            main.changeScene("ScreenFXMLs/Patient/ViewPrescriptions.fxml");
-        }
-        catch(Exception e) {
-            System.out.println("Page not Loaded");
-        }
-    }
-
-
 }

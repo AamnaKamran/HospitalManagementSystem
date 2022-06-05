@@ -71,5 +71,6 @@ public class Patients {
     }
 
     public void ViewPatients(MouseEvent mouseEvent) {
+
     }
 }

@@ -87,7 +87,6 @@ public class HmsUser {
         return null;
     }
 
-
     public static HmsUser retrieveUser(String username) {
         Configuration con = new Configuration();
         con.configure().addAnnotatedClass(HmsUser.class);
@@ -214,7 +213,6 @@ public class HmsUser {
 
     }
 
-
     public ArrayList<String> retrieveDoctors() {
         Configuration con = new Configuration();
         con.configure().addAnnotatedClass(HmsUser.class);
@@ -223,16 +221,37 @@ public class HmsUser {
         Session session= sf.openSession();
         Transaction trans= session.beginTransaction();
         List<HmsUser> memberList = session.createQuery("FROM HmsUser").getResultList();
-        ArrayList<String> soctors_list_string = new ArrayList<>();
+        ArrayList<String> doctors_list_string = new ArrayList<>();
 
         for(int i=0;i<memberList.size();i++)
         {
             if(memberList.get(i).getIsDoctor() == true){
-                soctors_list_string.add(memberList.get(i).getId());
+                doctors_list_string.add(memberList.get(i).getId());
             }
 
 
         }
-        return soctors_list_string;
+        return doctors_list_string;
+    }
+
+    public ArrayList<String> retrieveDoctorsNames() {
+        Configuration con = new Configuration();
+        con.configure().addAnnotatedClass(HmsUser.class);
+
+        SessionFactory sf= con.buildSessionFactory();
+        Session session= sf.openSession();
+        Transaction trans= session.beginTransaction();
+        List<HmsUser> memberList = session.createQuery("FROM HmsUser").getResultList();
+        ArrayList<String> doctors_list_string = new ArrayList<>();
+
+        for(int i=0;i<memberList.size();i++)
+        {
+            if(memberList.get(i).getIsDoctor() == true){
+                doctors_list_string.add(memberList.get(i).getFirstName());
+            }
+
+
+        }
+        return doctors_list_string;
     }
 }

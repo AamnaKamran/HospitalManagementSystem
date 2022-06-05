@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="450.0" prefWidth="630.0" style="-fx-background-color: #FAF9F6;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignUp">
+<AnchorPane prefHeight="450.0" prefWidth="630.0" style="-fx-background-color: #FAF9F6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignUp">
    <children>
       <Pane layoutX="1.0" prefHeight="450.0" prefWidth="630.0" style="-fx-background-color: #FFFFFF;">
          <children>
@@ -27,9 +27,9 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Text>
-            <Button fx:id="registerButton" layoutX="409.0" layoutY="393.0" mnemonicParsing="false" onMouseClicked="#registerButtonClicked" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #bc1c1c;" text="Register" textFill="#f5f5f5">
+            <Button fx:id="registerButton" layoutX="515.0" layoutY="397.0" mnemonicParsing="false" onMouseClicked="#registerButtonClicked" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #bc1c1c;" text="Register" textFill="#f5f5f5">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Button>
             <Button fx:id="backButton" layoutX="91.0" layoutY="393.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #30424e;" text="Back" textFill="WHITE">
@@ -69,9 +69,9 @@
             </TextField>
             <PasswordField fx:id="password" layoutX="282.0" layoutY="284.0" prefHeight="34.0" prefWidth="321.0" promptText="Password" />
             <PasswordField fx:id="confirm_password" layoutX="283.0" layoutY="329.0" prefHeight="34.0" prefWidth="321.0" promptText="Confirm Password" />
-            <Label fx:id="ExceptionText" alignment="CENTER" layoutX="304.0" layoutY="370.0" prefHeight="17.0" prefWidth="280.0" />
+            <Label fx:id="ExceptionText" alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="371.0" prefHeight="17.0" prefWidth="321.0" textFill="#f81a1a" />
             <Line endX="29.0" endY="419.0" layoutX="239.0" layoutY="31.0" startX="29.0" startY="-31.0" />
-            <CheckBox fx:id="is_doctor" layoutX="288.0" layoutY="402.0" mnemonicParsing="false" text="I am a Doctor" />
+            <CheckBox fx:id="is_doctor" layoutX="288.0" layoutY="405.0" mnemonicParsing="false" text="I am a Doctor" />
          </children>
       </Pane>
    </children>

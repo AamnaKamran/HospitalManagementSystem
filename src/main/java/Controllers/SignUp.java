@@ -3,7 +3,9 @@ package Controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Entities.HmsDoctor;
 import Entities.HmsUser;
+import Exception.SignUpException;
 import Main.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,7 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-import java.awt.*;
+import java.util.regex.Pattern;
 
 public class SignUp {
 
@@ -68,11 +70,24 @@ public class SignUp {
         catch(Exception e) {
             System.out.println("Page not Loaded");
         }
-
     }
 
     @FXML
-    void registerButtonClicked(MouseEvent event) {
+    void setLabelMsg(String msg){
+        ExceptionText.setText(msg);
+    }
+
+    public static boolean patternMatches(String emailAddress, String regexPattern) {
+        return Pattern.compile(regexPattern)
+                .matcher(emailAddress)
+                .matches();
+    }
+
+    @FXML
+    void registerButtonClicked(MouseEvent event) throws SignUpException {
+        HmsUser kms = new HmsUser();
+        HmsDoctor doctor = new HmsDoctor();
+
         String _password = password.getText();
         String _email = email.getText();
         String _cnic = cnic.getText();
@@ -82,8 +97,69 @@ public class SignUp {
         String _confirmedPassword = confirm_password.getText();
         String _username = username.getText();
         boolean _isDoctor = is_doctor.isSelected();
-        HmsUser kms = new HmsUser();
+
+        if(_password.length()==0
+                ||_email.length()==0
+                ||_cnic.length()==0
+                ||_firstName.length()==0
+                ||_lastName.length()==0
+                ||_phoneNumber.length()==0
+                ||_confirmedPassword.length()==0
+                ||_username.length()==0
+        )   {
+            setLabelMsg("Please fill the required fields.");
+            throw new SignUpException("Empty Text Field(s)");
+        }
+
+        if(patternMatches(_firstName,".*[0-9].*")){
+            setLabelMsg("Please enter a valid First Name");
+            throw new SignUpException("Name contains Digit(s)");
+        }
+
+        if(patternMatches(_lastName,".*[0-9].*")){
+            setLabelMsg("Please enter a valid Last Name");
+            throw new SignUpException("Name contains Digit(s)");
+        }
+
+        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        if(!patternMatches(_email, regexPattern)){
+            setLabelMsg("Please enter a valid Email Address.");
+            throw new SignUpException("Invalid Email Address");
+        }
+
+        if(cnic.getLength()<16){
+            setLabelMsg("CNIC should be 16 digits long.");
+            throw new SignUpException("Invalid CNIC length");
+        }
+
+        if(patternMatches(_cnic,".*[a-z].*")||patternMatches(_cnic,".*[A-Z].*")){
+            setLabelMsg("Invalid CNIC.");
+            throw new SignUpException("Invalid CNIC");
+        }
+
+        if(phone_number.getLength()<11){
+            setLabelMsg("Invalid phone number.");
+            throw new SignUpException("Invalid phone number");
+        }
+
+        if(patternMatches(_phoneNumber,".*[a-z].*")||patternMatches(_phoneNumber,".*[A-Z].*")){
+            setLabelMsg("Invalid phone number.");
+            throw new SignUpException("Invalid phone number");
+        }
+
+        if(!_password.equals(_confirmedPassword)){
+            setLabelMsg("Passwords don't match.");
+            throw new SignUpException("Passwords are not equal.");
+        }
+
+        if(kms.retrieveUser(_username)!=null){
+            setLabelMsg("Username Already Exists");
+            throw new SignUpException("Username Already Exists");
+        }
+
         kms.registerAUser(_username, _password, _email, _cnic, _firstName, _lastName, _phoneNumber, _confirmedPassword,_isDoctor);
+        //doctor.registerADoctor(_username, _firstName, _lastName);
 
         Main main = new Main();
         try {

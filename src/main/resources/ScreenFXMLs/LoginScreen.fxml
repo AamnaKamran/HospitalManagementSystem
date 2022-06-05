@@ -13,12 +13,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="450.0" prefWidth="630.0" style="-fx-background-color: #FAF9F6;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Login">
+<AnchorPane prefHeight="450.0" prefWidth="630.0" style="-fx-background-color: #FAF9F6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Login">
     <children>
         <Pane prefHeight="450.0" prefWidth="630.0" style="-fx-background-color: #FFFFFF;">
             <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3fa8be" height="450.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="273.0" />
-                <Button fx:id="signInButton" layoutX="106.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#SignInButtonClicked" prefHeight="27.0" prefWidth="62.0" style="-fx-background-color: #30424e;" text="Sign In" textFill="WHITE">
+                <Button fx:id="signInButton" layoutX="106.0" layoutY="389.0" mnemonicParsing="false" onMouseClicked="#SignInButtonClicked" prefHeight="27.0" prefWidth="62.0" style="-fx-background-color: #30424e;" text="Sign In" textFill="WHITE">
                     <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </padding>
@@ -33,7 +33,6 @@
                         <Font name="Arial Bold" size="20.0" />
                     </font>
                 </Text>
-                <Label fx:id="incorrectTextLabel" layoutX="371.0" layoutY="315.0" />
                 <ImageView fitHeight="357.0" fitWidth="328.0" layoutX="288.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/doctors.jpg" />
@@ -58,6 +57,11 @@
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Button>
+            <Label fx:id="incorrectTextLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="357.0" prefHeight="17.0" prefWidth="184.0" textFill="#f81a1a">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Label>
             </children>
         </Pane>
     </children>

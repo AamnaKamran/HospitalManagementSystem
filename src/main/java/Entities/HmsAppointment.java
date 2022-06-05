@@ -7,6 +7,8 @@ import org.hibernate.cfg.Configuration;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "hms_appointments")
@@ -74,4 +76,24 @@ public class HmsAppointment {
         trans.commit();
     }
 
+//    public ArrayList<String> getPatients() {
+//        Configuration con = new Configuration();
+//        con.configure().addAnnotatedClass(HmsUser.class);
+//
+//        SessionFactory sf= con.buildSessionFactory();
+//        Session session= sf.openSession();
+//        Transaction trans= session.beginTransaction();
+//        List<HmsAppointment> patientList = session.createQuery("FROM HmsUser").getResultList();
+//        ArrayList<String> doctors_list_string = new ArrayList<>();
+//
+//        for(int i=0;i<memberList.size();i++)
+//        {
+//            if(memberList.get(i).getIsDoctor() == true){
+//                doctors_list_string.add(memberList.get(i).getId());
+//            }
+//
+//
+//        }
+//        return doctors_list_string;
+//    }
 }
